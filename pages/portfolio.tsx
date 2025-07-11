@@ -13,7 +13,7 @@ const projects = [
     ],
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
     tag: 'Personal Project',
-    link: 'https://github.com/prasadSawant-pvt/portfolio-website'
+    link: 'https://github.com/prasadSawant-pvt/portfolio'
   },
   {
     title: 'E-commerce Website Backend Services',

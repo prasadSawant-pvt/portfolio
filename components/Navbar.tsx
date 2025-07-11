@@ -70,6 +70,17 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+        {/* Resume download button */}
+        <a
+          href="/Resume.pdf"
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-4 px-4 py-1 bg-accent dark:bg-accent2 text-white dark:text-gray-900 font-semibold rounded-full shadow hover:bg-accent2 dark:hover:bg-accent transition-colors duration-150 text-sm border border-accent2"
+          aria-label="Download Resume PDF"
+        >
+          Resume
+        </a>
       </div>
     </motion.nav>
   );

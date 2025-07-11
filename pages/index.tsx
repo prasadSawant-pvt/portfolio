@@ -2,6 +2,62 @@
 // Layout and content are mobile-first and fully responsive
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaEnvelope } from 'react-icons/fa';
+import { useState } from 'react';
+
+function MailRevealButton() {
+  const [show, setShow] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const email = "prasadsawant.pvt@gmail.com";
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (err) {
+      setCopied(false);
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <button
+        aria-label="Show email address"
+        className="text-accent dark:text-accent2 text-2xl hover:text-accent2 dark:hover:text-accent p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-accent transition"
+        onClick={() => setShow((s) => !s)}
+        type="button"
+      >
+        <FaEnvelope />
+      </button>
+      {show && (
+        <div className="flex items-center bg-white dark:bg-gray-900 border border-accent2 dark:border-accent rounded-xl shadow px-4 py-2 gap-2 animate-fade-in">
+          <a
+            href={`mailto:${email}`}
+            className="text-accent dark:text-accent2 font-semibold text-base sm:text-lg whitespace-nowrap hover:underline"
+          >
+            {email}
+          </a>
+          <button
+            onClick={handleCopy}
+            className="ml-2 px-2 py-1 rounded bg-accent2 text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent2 transition flex items-center gap-1"
+            aria-label="Copy email address"
+            type="button"
+          >
+            {copied ? (
+              <span className="text-xs">Copied!</span>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16h8M8 12h8m-8-4h8M4 6h16M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6" /></svg>
+            )}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
 
 /**
  * Home() is the landing page of the portfolio.
@@ -41,23 +97,7 @@ export default function Home() {
           Prasad Sawant
         </motion.h1>
         {/* Resume Download Button */}
-        <motion.div
-          className="mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          <a
-            href="/Prasad_Sawant_CV.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-2 bg-accent dark:bg-accent2 text-white dark:text-gray-900 font-semibold rounded-full shadow hover:bg-accent2 dark:hover:bg-accent transition-colors duration-150 text-lg"
-            aria-label="Download Resume PDF"
-          >
-            Download Resume
-          </a>
-        </motion.div>
+        
         {/* Subtitle/role, responsive */}
         <motion.h2
           className="text-xl md:text-2xl text-gray-700 dark:text-gray-200 mb-2"
@@ -83,12 +123,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
         >
-          <a
-            href="mailto:prasadsawant.pvt@gmail.com"
-            className="text-accent dark:text-accent2 hover:underline"
-          >
-            prasadsawant.pvt@gmail.com
-          </a>
+          <MailRevealButton />
         </motion.div>
         {/* Social links: LinkedIn and GitHub, large and easy to tap */}
         <motion.div
@@ -98,10 +133,10 @@ export default function Home() {
           transition={{ delay: 1, duration: 0.5 }}
         >
           <a href="https://www.linkedin.com/in/prasadsawant518" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-accent dark:text-accent2 text-2xl hover:text-accent2 dark:hover:text-accent">
-            <i className="fab fa-linkedin-in"></i>
+            <FaLinkedin />
           </a>
           <a href="https://github.com/prasadSawant-pvt" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-accent dark:text-accent2 text-2xl hover:text-accent2 dark:hover:text-accent">
-            <i className="fab fa-github"></i>
+            <FaGithub />
           </a>
         </motion.div>
       </section>

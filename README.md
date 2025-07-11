@@ -1,164 +1,146 @@
-# Prasad Sawant Portfolio
+# 🚀 Prasad Sawant Portfolio
 
-A modern, high-performance portfolio website built with **Next.js 14**, React, Framer Motion, and Tailwind CSS.
+> A modern, high-performance developer portfolio built with **Next.js 14**, React, Tailwind CSS, and Framer Motion.
 
----
-
-## 🚀 Project Overview
-
-This portfolio showcases Prasad Sawant (Backend Software Engineer) and features:
-- **Fast loading, mobile-first design**
-- **Dark/Light mode toggle** (with persistent preference)
-- **Animated page transitions** using Framer Motion
-- **Responsive layouts** for all devices
-- **Contact form** (Formspree integration)
-- **Downloadable Resume** (PDF)
-- **Project filtering, skills, and more**
+🌐 **Live Website:**  
+🔗 [https://prasad-sawant-portfolio.vercel.app](https://prasad-sawant-portfolio.vercel.app)
 
 ---
 
-## ✨ Major Features & Improvements
+## 🖼️ Preview
 
-- **Performance Optimized:**
-  - Smooth, fast page transitions
-  - Image lazy loading and hydration-safe rendering
-- **Mobile Responsive:**
-  - Tailwind CSS utility classes for all breakpoints
-  - Touch-friendly navigation and buttons
-- **Dark/Light Theme:**
-  - Toggle at top left of header
-  - Theme persists via localStorage
-- **Clean, Maintainable Code:**
-  - Friendly comments throughout
-  - Unused code and imports removed
-- **Contact & Social:**
-  - LinkedIn connect, email, and Formspree contact
-  - WhatsApp and phone removed for privacy
-- **Resume Download:**
-  - Button to download the latest PDF CV from `/public`
+<img width="1914" height="876" alt="screenshot png" src="https://github.com/user-attachments/assets/3b734565-8f4f-40d2-9272-39b14ee38c3f" />
+
+
+## 🔍 Project Overview
+
+This is the official portfolio of **Prasad Sawant**, a Backend Software Engineer. It showcases skills, experience, and projects in a clean, responsive layout built with modern technologies.
 
 ---
 
-## 🛠️ Getting Started
+## ✨ Key Features
 
-### 1. Clone the Repo
-```bash
-git clone https://github.com/YOUR_USERNAME/prasad-sawant-portfolio.git
-cd prasad-sawant-portfolio
+- 🔥 Fast performance with Next.js 14  
+- 🌘 Dark/Light theme toggle (persistent)  
+- 📱 Mobile-first responsive design  
+- 📄 Downloadable resume (PDF)  
+- 💬 Contact form with Formspree  
+- 🔗 LinkedIn, GitHub, and Email integration  
+- 🎬 Animated transitions with Framer Motion  
+- 🧩 Project filtering and skills grid  
+
+---
+
+## 🛡️ Security & Privacy
+
+- ⛔ Resume download rate limit (3/day/IP)  
+- 🚫 Contact form limit (3/month/IP)  
+- 🕵️‍♂️ Email hidden until revealed (copy-to-clipboard)  
+- 🔐 Secure headers via `next.config.js` (CSP, HSTS, etc.)
+
+---
+
+## 🛠️ Tech Stack
+
+| Area | Tech |
+|------|------|
+| Framework | Next.js 14, React |
+| Styling | Tailwind CSS |
+| Animations | Framer Motion |
+| Icons | React Icons |
+| Contact | Formspree |
+| Hosting | Vercel |
+| Middleware | Edge Middleware for rate-limiting |
+
+---
+
+## 📁 Folder Structure
+
+```
+/components         → Reusable UI components
+/pages              → All main pages + API routes
+/public             → Static assets (Resume, images)
+/styles             → Global and Tailwind styles
+/middleware.ts      → Edge rate limiting
+/next.config.js     → Security headers & config
 ```
 
-### 2. Install Dependencies
+---
+
+## 🧰 Getting Started
+
 ```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/prasad-sawant-portfolio.git
+cd prasad-sawant-portfolio
+
+# Install dependencies
 npm install
 # or
 yarn install
-```
 
-### 3. Start the Development Server
-```bash
+# Run the development server
 npm run dev
 # or
 yarn dev
-```
-Visit [http://localhost:3000](http://localhost:3000) to view the site.
+# Open in browser at http://localhost:3000
 
-### 4. Build for Production
-```bash
+# Build for production
 npm run build
 npm start
 ```
 
 ---
 
-## 🛡️ Security & Privacy Enhancements
+## 🎨 Customization Guide
 
-- **Resume Download Rate Limiting:**
-  - Edge middleware limits `/Resume.pdf` downloads to 3 per IP per day (prevents DoS/download abuse).
-- **Contact Form Rate Limiting:**
-  - API route `/api/contact` proxies to Formspree and restricts each IP to 3 submissions per month (protects Formspree quota & spam).
-- **Secure HTTP Headers:**
-  - Enforced via `next.config.js` (CSP, X-Frame-Options, HSTS, etc.).
-- **Email Privacy:**
-  - Email is hidden behind a reveal button (envelope icon). When clicked, shows email in a styled box with a copy button.
-  - Prevents scraping and reduces spam risk.
-- **No sensitive data in frontend.**
-
----
-
-## ✨ Updated Features & Stack
-
-- **Modern UI:** Social icons (LinkedIn, GitHub, Email) use `react-icons` for reliability and style.
-- **Resume Download:** Button in header, protected by rate limit middleware.
-- **Contact Form:**
-  - Submits via `/api/contact` API route with per-IP limit.
-  - Integrates with Formspree (set your form ID in code).
-- **Email Reveal:**
-  - Email is initially hidden; click the mail icon to reveal in a beautiful box with a copy-to-clipboard button and feedback.
-- **Frameworks & Libraries:**
-  - Next.js 14, React, Tailwind CSS, Framer Motion, react-icons
-
----
-
-## 📁 Folder Structure
-
-- `/pages` — Main site pages (Home, About, Skills, Experience, Portfolio, Contact, API routes)
-- `/components` — Reusable UI components (Layout, Navbar, ThemeContext, etc.)
-- `/public` — Static assets (profile photo, `Resume.pdf`, favicon)
-- `/styles` — Tailwind and global CSS
-- `/middleware.ts` — Edge middleware for rate limiting
-- `/next.config.js` — Security headers
-
----
-
-## 📦 Main Dependencies
-
-- **next** — React framework for SSR and static sites
-- **react** — UI library
-- **tailwindcss** — Utility-first CSS framework
-- **framer-motion** — Animations and transitions
-- **react-icons** — Icon library (Font Awesome, etc.)
-
----
-
-## 🔒 How Security Works
-
-- **Resume Download:** Middleware limits downloads to 3 per IP per day. Returns 429 if exceeded.
-- **Contact Form:** API route limits to 3 submissions per IP per month. Returns 429 if exceeded. Proxies to Formspree.
-- **Email:** Not directly visible in markup; revealed on click, with copy button and feedback.
-- **Headers:** CSP, X-Frame-Options, HSTS, and more set via Next.js config.
-
----
-
-## 📝 To Update/Configure
-
-- Set your Formspree form ID in `/pages/api/contact.ts`.
-- Place your latest resume as `public/Resume.pdf`.
-- Customize social/contact links in `/pages/index.tsx`.
-
----
-
-## 🎨 Customization
-
-- **Resume:** Replace `public/Prasad_Sawant_CV.pdf` with your latest resume.
-- **Profile Photo:** Update `public/photo.jpg`.
-- **Theme Colors:** Edit `tailwind.config.js` for accent colors.
-- **Projects, Skills, Experience:** Edit the corresponding files in `/pages`.
+| What | How |
+|------|-----|
+| 📄 Resume | Replace `/public/Resume.pdf` with your latest CV |
+| 🖼️ Screenshot | Replace `./public/screenshot.png` |
+| 🔗 Social Links | Edit `/components/Header.tsx` and `index.tsx` |
+| 🧠 Skills & Projects | Update content in `/pages/index.tsx` |
+| 🌈 Theme Colors | Customize `tailwind.config.js` |
+| 📬 Formspree ID | Set it in `/pages/api/contact.ts` |
 
 ---
 
 ## 🌐 Deployment
 
-- Deploy easily to [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/) with zero-config for Next.js.
-- Push your repo and connect to your deployment provider.
+- Push your repo to GitHub  
+- Connect to [Vercel](https://vercel.com)  
+- Vercel auto-deploys on push to `main` branch  
+- No config needed for Next.js hosting  
 
 ---
 
-## 🙏 Credits & Acknowledgements
+## 🙌 Acknowledgments
 
-- Built with [Next.js](https://nextjs.org/), [React](https://react.dev/), [Tailwind CSS](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/)
-- Icons: [Font Awesome](https://fontawesome.com/)
-- Contact form: [Formspree](https://formspree.io/)
+- Built with:
+  - [Next.js](https://nextjs.org/)
+  - [React](https://react.dev/)
+  - [Tailwind CSS](https://tailwindcss.com/)
+  - [Framer Motion](https://www.framer.com/motion/)
+  - [Formspree](https://formspree.io/)
+  - [React Icons](https://react-icons.github.io/react-icons/)
 
 ---
 
-**Feel free to fork, customize, and share!**
+## 📢 License & Sharing
+
+This project is open-source.  
+Feel free to fork, modify, and use it for your own portfolio. Attribution is appreciated!
+
+---
+
+## ⭐ Show Your Support
+
+If you like this project, found it useful, or got inspired by the design or code —  
+**please consider giving it a ⭐ star on GitHub** and **share it with your network**!
+
+It helps others discover it and supports my work 🙌
+
+---
+
+🌐 **Live Website Again:**  
+🔗 [https://prasad-sawant-portfolio.vercel.app](https://prasad-sawant-portfolio.vercel.app)

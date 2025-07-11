@@ -22,15 +22,11 @@ export default function Layout({ title, children }: Props) {
     // ThemeProvider wraps the app to provide dark/light mode functionality
     <ThemeProvider>
       <div className="flex flex-col min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
-        {/* Head: Meta tags, favicon, Google Fonts, and FontAwesome icons */}
+        {/* Head: Meta tags and favicon only (fonts/icons moved to _document.tsx) */}
         <Head>
           <title>{title ? `${title} | Prasad Sawant` : 'Prasad Sawant Portfolio'}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet" />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         </Head>
         {/* Navbar: always at the top */}
         <Navbar />

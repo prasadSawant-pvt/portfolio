@@ -14,8 +14,8 @@ export default function About() {
         {/* About Me paragraph - updated for 2025 */}
         <div className="bg-gray-100 dark:bg-gray-800 rounded-xl px-6 py-6 md:px-10 md:py-8 mb-4 shadow-lg inline-block text-left max-w-2xl transition-colors duration-300">
           <p className="text-gray-700 dark:text-gray-200 text-lg">
-            I'm a passionate and performance-driven Backend Software Engineer with hands-on experience building scalable APIs and microservices for enterprise-grade systems. Currently at PayPal, I specialize in Java, Spring Boot, and cloud-native architectures, delivering backend solutions that are fast, reliable, and production-ready.<br /><br />
-            With a strong foundation in DevOps practices like Docker, CI/CD pipelines, and cloud deployments, I focus on building systems that are not just functional, but optimized for speed, scalability, and maintainability. I've consistently contributed to improving system performance, accelerating development cycles, and reducing time-to-market.
+            I&apos;m a passionate and performance-driven Backend Software Engineer with hands-on experience building scalable APIs and microservices for enterprise-grade systems. Currently at PayPal, I specialize in Java, Spring Boot, and cloud-native architectures, delivering backend solutions that are fast, reliable, and production-ready.<br /><br />
+            With a strong foundation in DevOps practices like Docker, CI/CD pipelines, and cloud deployments, I focus on building systems that are not just functional, but optimized for speed, scalability, and maintainability. I&apos;ve consistently contributed to improving system performance, accelerating development cycles, and reducing time-to-market.
           </p>
         </div>
         <div className="mt-6">

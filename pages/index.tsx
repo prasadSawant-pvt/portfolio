@@ -9,6 +9,7 @@ import { useState } from 'react';
 function MailRevealButton() {
   const [show, setShow] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [hideTimer, setHideTimer] = useState<NodeJS.Timeout | null>(null);
   const email = "prasadsawant.pvt@gmail.com";
 
   const handleCopy = async () => {
@@ -21,18 +22,46 @@ function MailRevealButton() {
     }
   };
 
+  // When mouse/focus enters either icon or reveal, show and clear timer
+  const handleShow = () => {
+    setShow(true);
+    if (hideTimer) {
+      clearTimeout(hideTimer);
+      setHideTimer(null);
+    }
+  };
+  // When mouse/focus leaves both, start timer to hide
+  const handleHide = () => {
+    if (hideTimer) clearTimeout(hideTimer);
+    setHideTimer(setTimeout(() => setShow(false), 2000));
+  };
+
   return (
-    <div className="flex items-center gap-2">
+    <div
+      className="flex items-center gap-2"
+      onMouseEnter={handleShow}
+      onMouseLeave={handleHide}
+      onFocus={handleShow}
+      onBlur={handleHide}
+      tabIndex={-1}
+    >
       <button
         aria-label="Show email address"
         className="text-accent dark:text-accent2 text-2xl hover:text-accent2 dark:hover:text-accent p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-accent transition"
-        onClick={() => setShow((s) => !s)}
         type="button"
+        tabIndex={0}
       >
         <FaEnvelope />
       </button>
       {show && (
-        <div className="flex items-center bg-white dark:bg-gray-900 border border-accent2 dark:border-accent rounded-xl shadow px-4 py-2 gap-2 animate-fade-in">
+        <div
+          className="flex items-center bg-white dark:bg-gray-900 border border-accent2 dark:border-accent rounded-xl shadow px-4 py-2 gap-2 animate-fade-in"
+          onMouseEnter={handleShow}
+          onMouseLeave={handleHide}
+          onFocus={handleShow}
+          onBlur={handleHide}
+          tabIndex={-1}
+        >
           <a
             href={`mailto:${email}`}
             className="text-accent dark:text-accent2 font-semibold text-base sm:text-lg whitespace-nowrap hover:underline"
@@ -134,6 +163,7 @@ export default function Home() {
         >
           <a href="https://www.linkedin.com/in/prasadsawant518" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-accent dark:text-accent2 text-2xl hover:text-accent2 dark:hover:text-accent">
             <FaLinkedin />
+            <span className="sr-only">LinkedIn</span>
           </a>
           <a href="https://github.com/prasadSawant-pvt" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-accent dark:text-accent2 text-2xl hover:text-accent2 dark:hover:text-accent">
             <FaGithub />

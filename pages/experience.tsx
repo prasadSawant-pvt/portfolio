@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const experiences = [
   {
     title: 'Backend Software Engineer',
-    company: 'PayPal, Pune',
+    company: 'PayPal, Bengaluru',
     date: 'Jan 2025 – Present',
     description: [
       'Design, develop, and optimize core systems that power millions of transactions daily.',
@@ -14,7 +14,7 @@ const experiences = [
   },
   {
     title: 'Analyst',
-    company: 'TIAA, Pune',
+    company: 'TIAA, Bengaluru',
     date: 'July 2022 – Dec 2024',
     description: [
       'Developed robust and scalable APIs for the web-based platform ICON.',

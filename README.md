@@ -14,7 +14,7 @@
 
 ## 🔍 Project Overview
 
-This is the official portfolio of **Prasad Sawant**, a Backend Software Engineer at PayPal. It showcases skills, experience, and projects in a clean, responsive layout built with modern technologies.
+This is the official portfolio of **Prasad Sawant**, a Backend Software Engineer. It showcases skills, experience, and projects in a clean, responsive layout built with modern technologies.
 
 ---
 

@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prasad Sawant Portfolio
 
-## Getting Started
+A modern, high-performance portfolio website built with **Next.js 14**, React, Framer Motion, and Tailwind CSS.
 
-First, run the development server:
+---
 
+## 🚀 Project Overview
+
+This portfolio showcases Prasad Sawant (Backend Software Engineer) and features:
+- **Fast loading, mobile-first design**
+- **Dark/Light mode toggle** (with persistent preference)
+- **Animated page transitions** using Framer Motion
+- **Responsive layouts** for all devices
+- **Contact form** (Formspree integration)
+- **Downloadable Resume** (PDF)
+- **Project filtering, skills, and more**
+
+---
+
+## ✨ Major Features & Improvements
+
+- **Performance Optimized:**
+  - Smooth, fast page transitions
+  - Image lazy loading and hydration-safe rendering
+- **Mobile Responsive:**
+  - Tailwind CSS utility classes for all breakpoints
+  - Touch-friendly navigation and buttons
+- **Dark/Light Theme:**
+  - Toggle at top left of header
+  - Theme persists via localStorage
+- **Clean, Maintainable Code:**
+  - Friendly comments throughout
+  - Unused code and imports removed
+- **Contact & Social:**
+  - LinkedIn connect, email, and Formspree contact
+  - WhatsApp and phone removed for privacy
+- **Resume Download:**
+  - Button to download the latest PDF CV from `/public`
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone the Repo
+```bash
+git clone https://github.com/YOUR_USERNAME/prasad-sawant-portfolio.git
+cd prasad-sawant-portfolio
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Start the Development Server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Visit [http://localhost:3000](http://localhost:3000) to view the site.
+
+### 4. Build for Production
+```bash
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Folder Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/pages` — Main site pages (Home, About, Skills, Experience, Portfolio, Contact)
+- `/components` — Reusable UI components (Layout, Navbar, ThemeContext, etc.)
+- `/public` — Static assets (profile photo, `Prasad_Sawant_CV.pdf`, favicon)
+- `/styles` — Tailwind and global CSS
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 Customization
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Resume:** Replace `public/Prasad_Sawant_CV.pdf` with your latest resume.
+- **Profile Photo:** Update `public/photo.jpg`.
+- **Theme Colors:** Edit `tailwind.config.js` for accent colors.
+- **Projects, Skills, Experience:** Edit the corresponding files in `/pages`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🌐 Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Deploy easily to [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/) with zero-config for Next.js.
+- Push your repo and connect to your deployment provider.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🙏 Credits & Acknowledgements
+
+- Built with [Next.js](https://nextjs.org/), [React](https://react.dev/), [Tailwind CSS](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/)
+- Icons: [Font Awesome](https://fontawesome.com/)
+- Contact form: [Formspree](https://formspree.io/)
+
+---
+
+**Feel free to fork, customize, and share!**

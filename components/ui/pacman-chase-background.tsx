@@ -6,8 +6,7 @@ export default function PacmanChaseBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const ctx = canvas.getContext('2d')!;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;

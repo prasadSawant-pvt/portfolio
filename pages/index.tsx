@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa';
 import { useState } from 'react';
+import PacmanChaseBackground from '../components/ui/pacman-chase-background';
 
 function MailRevealButton() {
   const [show, setShow] = useState(false);
@@ -97,7 +98,7 @@ function MailRevealButton() {
 export default function Home() {
   return (
     <Layout title="Home">
-      {/* Main hero section: vertically centered, mobile-friendly */}
+      {/* Pacman background will be injected into the main layout container for correct stacking */}
       <section className="flex flex-col items-center justify-center min-h-[60vh] text-center bg-white dark:bg-gray-900 px-2 sm:px-0 transition-colors duration-300">
         {/* Profile photo with border and round shape */}
         <motion.div

@@ -96,6 +96,7 @@ const projects = [
 projects.sort((a, b) => (Number(b.year || 0) - Number(a.year || 0)));
 
 import React, { useState } from 'react';
+import { Carousel, Card } from '../components/ui/apple-cards-carousel';
 
 export default function Portfolio() {
   const [filter, setFilter] = useState<'All' | 'Personal' | 'Professional'>('All');
@@ -120,52 +121,45 @@ export default function Portfolio() {
             </button>
           ))}
         </div>
-        <div className="grid gap-6">
+        <div className="flex flex-col gap-6 w-full h-full py-6 sm:py-10">
           {projects
             .filter(project =>
               filter === 'All' ? true : filter === 'Personal' ? project.tag === 'Personal Project' : project.tag === 'Professional Experience'
             )
             .map((project, idx) => (
-              <motion.div
-              key={project.title}
-              className="bg-gray-100 rounded-xl shadow p-6 border-l-4 border-accent hover:scale-[1.03] hover:shadow-lg transition-all duration-300 cursor-pointer mb-6"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + idx * 0.1, duration: 0.6 }}
-              whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(52,152,219,0.15)' }}
-            >
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  {project.tag && (
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${project.tag === 'Professional Experience' ? 'bg-blue-100 text-blue-700 border border-blue-300' : 'bg-green-100 text-green-700 border border-green-300'}`}>
-                      {project.tag}
-                    </span>
-                  )}
-                  <div className="text-xl font-semibold text-accent2">{project.title}</div>
-                </div>
-                <div className="text-gray-500 italic text-sm mt-1 md:mt-0">{project.year}</div>
-              </div>
-              <ul className="list-disc ml-6 text-gray-700 mt-2">
-                {project.description.map((desc, i) => (
-                  <li key={i}>{desc}</li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-2 mt-3">
-                {project.tech.map((t, i) => (
-                  <span key={i} className="bg-accent bg-opacity-10 text-accent px-2 py-1 rounded text-xs font-semibold">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              {['Portfolio-Website', 'E-commerce Website Backend Services'].includes(project.title) && (
-                <div className="mt-3">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline font-medium">
-                    View on GitHub <i className="fab fa-github ml-1"></i>
-                  </a>
-                </div>
-              )}
-            </motion.div>
-          ))}
+              <Card
+                key={project.title}
+                card={{
+                  category: project.tag,
+                  title: project.title,
+                  content: (
+                    <>
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        {project.tech.map((t: string, i: number) => (
+                          <span key={i} className="bg-accent bg-opacity-10 text-accent px-2 py-1 rounded text-xs font-semibold">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                      <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 mb-2">
+                        {project.description.map((desc: string, i: number) => (
+                          <li key={i}>{desc}</li>
+                        ))}
+                      </ul>
+                      {project.link && (
+                        <div className="mt-2">
+                          <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline font-medium">
+                            View on GitHub
+                          </a>
+                        </div>
+                      )}
+                      <div className="text-gray-500 italic text-xs sm:text-sm mt-2">{project.year}</div>
+                    </>
+                  ),
+                }}
+                index={idx}
+              />
+            ))}
         </div>
       </motion.section>
     </Layout>

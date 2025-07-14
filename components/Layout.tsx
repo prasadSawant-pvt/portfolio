@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Navbar from './Navbar';
 import { motion } from 'framer-motion';
 import { ThemeProvider } from './ThemeContext';
+import PacmanChaseBackground from './ui/pacman-chase-background';
 
 // Props for the Layout component
 interface Props {
@@ -17,7 +18,11 @@ interface Props {
  * - <main> grows to fill space, keeping footer at the bottom.
  * - All styles are mobile-first and responsive.
  */
+import { useRouter } from 'next/router';
+
 export default function Layout({ title, children }: Props) {
+  const router = useRouter();
+  const isHome = router.pathname === '/';
   return (
     // ThemeProvider wraps the app to provide dark/light mode functionality
     <ThemeProvider>
@@ -28,19 +33,23 @@ export default function Layout({ title, children }: Props) {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        {/* Navbar: always at the top */}
-        <Navbar />
-        {/* Main content area: grows to fill space */}
-        <main className="flex-1">{children}</main>
-        {/* Animated footer for a polished finish */}
-        <motion.footer
-          className="text-center py-6 text-gray-500 border-t border-gray-200 mt-12 dark:border-gray-700"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
-        >
-          &copy; 2025 Prasad Sawant. All rights reserved.
-        </motion.footer>
+        <div className="flex flex-col min-h-screen">
+          {/* Pacman background on all pages */}
+          <PacmanChaseBackground />
+          {/* Navbar: always at the top */}
+          <Navbar />
+          {/* Main content area: grows to fill space */}
+          <main className="flex-1">{children}</main>
+          {/* Animated footer for a polished finish */}
+          <motion.footer
+            className="text-center py-6 text-gray-500 border-t border-gray-200 mt-12 dark:border-gray-700"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+          >
+            &copy; 2025 Prasad Sawant. All rights reserved.
+          </motion.footer>
+        </div>
       </div>
     </ThemeProvider>
   );

@@ -109,16 +109,19 @@ export default function Navbar() {
         </div>
         {/* Right section: Nav links and Resume */}
         <div className="flex flex-row items-center gap-2 md:gap-4">
-          <ul className="hidden md:flex flex-wrap gap-4 md:gap-6 mt-2 md:mt-0 overflow-x-auto">
+          <ul className="hidden md:flex gap-4 lg:gap-6 items-center">
             {navLinks.map(link => (
               <li key={link.href}>
-                <Link href={link.href}>
-                  <span
-                    className={`hover:text-accent2 transition font-semibold cursor-pointer ${router.pathname === link.href ? 'text-accent2' : 'text-gray-300'}`}
-                    aria-current={router.pathname === link.href ? 'page' : undefined}
-                  >
-                    {link.label}
-                  </span>
+                <Link
+                  href={link.href}
+                  className={
+                    `px-3 py-2 rounded-lg font-medium transition-colors duration-150 text-sm lg:text-base hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-white` +
+                    (router.pathname === link.href
+                      ? ' bg-accent text-white dark:bg-accent dark:text-white'
+                      : ' text-white dark:text-gray-200')
+                  }
+                >
+                  {link.label}
                 </Link>
               </li>
             ))}

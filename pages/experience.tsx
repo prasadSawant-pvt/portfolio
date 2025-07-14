@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
+import { Card } from '../components/ui/apple-cards-carousel';
 
 const experiences = [
   {
@@ -34,29 +35,26 @@ export default function Experience() {
         transition={{ duration: 0.7 }}
       >
         <h1 className="text-3xl font-bold text-accent mb-8">Experience</h1>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6 w-full py-6 sm:py-10">
           {experiences.map((exp, idx) => (
-            <motion.div
+            <Card
               key={exp.title}
-              className="bg-gray-100 rounded-xl shadow p-6 border-l-4 border-accent hover:scale-[1.03] hover:shadow-lg transition-all duration-300 cursor-pointer"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + idx * 0.1, duration: 0.6 }}
-              whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(52,152,219,0.15)' }}
-            >
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                <div>
-                  <div className="text-xl font-semibold text-accent2">{exp.title}</div>
-                  <div className="text-accent font-medium">{exp.company}</div>
-                </div>
-                <div className="text-gray-500 italic text-sm mt-2 md:mt-0">{exp.date}</div>
-              </div>
-              <ul className="list-disc ml-6 text-gray-700 mt-2">
-                {exp.description.map((desc, i) => (
-                  <li key={i}>{desc}</li>
-                ))}
-              </ul>
-            </motion.div>
+              card={{
+                category: exp.company,
+                title: exp.title,
+                content: (
+                  <>
+                    <div className="text-gray-500 italic text-xs sm:text-sm mb-2">{exp.date}</div>
+                    <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 mb-2">
+                      {exp.description.map((desc: string, i: number) => (
+                        <li key={i}>{desc}</li>
+                      ))}
+                    </ul>
+                  </>
+                ),
+              }}
+              index={idx}
+            />
           ))}
         </div>
       </motion.section>

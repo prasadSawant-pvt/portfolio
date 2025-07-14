@@ -19,8 +19,10 @@ export default function PacmanChaseBackground() {
       angle: 0,
       speed: 2.5,
       color: 'yellow',
-      // vx and vy will be set dynamically for direction
+      vx: 2.5, // ← Add this
+      vy: 1.8  // ← And this
     };
+    
 
     // Particle and fading skull types
     type Particle = { x: number; y: number; dx: number; dy: number; alpha: number };

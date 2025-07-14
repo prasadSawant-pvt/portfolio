@@ -6,8 +6,7 @@ export default function PacmanChaseBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const ctx = canvas.getContext('2d')!;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -20,8 +19,10 @@ export default function PacmanChaseBackground() {
       angle: 0,
       speed: 2.5,
       color: 'yellow',
-      // vx and vy will be set dynamically for direction
+      vx: 2.5, // ← Add this
+      vy: 1.8  // ← And this
     };
+    
 
     // Particle and fading skull types
     type Particle = { x: number; y: number; dx: number; dy: number; alpha: number };
@@ -112,8 +113,8 @@ export default function PacmanChaseBackground() {
 
     function spawnGhost(idx: number) {
       ghosts[idx] = {
-        x: 100 + Math.random() * canvas.width,
-        y: 100 + Math.random() * canvas.height,
+        x: 100 + Math.random() * canvas!.width,
+        y: 100 + Math.random() * canvas!.height,
         radius: 18,
         speed: 1.5,
         color: '#6ec6ff',
@@ -134,8 +135,8 @@ export default function PacmanChaseBackground() {
         pacman.x = pacman.radius;
         pacman.vx *= -1;
       }
-      if (pacman.x > canvas.width - pacman.radius) {
-        pacman.x = canvas.width - pacman.radius;
+      if (pacman.x > canvas!.width - pacman.radius) {
+        pacman.x = canvas!.width - pacman.radius;
         pacman.vx *= -1;
       }
       // Bounce off top/bottom
@@ -143,8 +144,8 @@ export default function PacmanChaseBackground() {
         pacman.y = pacman.radius;
         pacman.vy *= -1;
       }
-      if (pacman.y > canvas.height - pacman.radius) {
-        pacman.y = canvas.height - pacman.radius;
+      if (pacman.y > canvas!.height - pacman.radius) {
+        pacman.y = canvas!.height - pacman.radius;
         pacman.vy *= -1;
       }
 
@@ -207,7 +208,7 @@ export default function PacmanChaseBackground() {
     }
 
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas!.width, canvas!.height);
       updatePositions();
       drawPacman();
       ghosts.forEach(drawGhost);
@@ -222,8 +223,8 @@ export default function PacmanChaseBackground() {
     animate();
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas!.width = window.innerWidth;
+      canvas!.height = window.innerHeight;
     };
     window.addEventListener('resize', handleResize);
 

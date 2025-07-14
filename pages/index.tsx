@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa';
 import { useState } from 'react';
+import Image from 'next/image';
 import PacmanChaseBackground from '../components/ui/pacman-chase-background';
 
 function MailRevealButton() {
@@ -107,14 +108,14 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7 }}
         >
-          <img
-            src="/photo.jpg"
-            alt="Prasad Sawant profile photo"
-            width={160}
-            height={160}
-            className="object-cover w-full h-full"
-            loading="lazy"
-          />
+          <Image
+                src="/photo.jpg"
+                alt="Prasad Sawant profile photo"
+                width={160}
+                height={160}
+                className="object-cover w-full h-full"
+                loading="lazy"
+             />
         </motion.div>
         {/* Name/title, responsive text */}
         <motion.h1

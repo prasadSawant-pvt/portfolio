@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import { ToastProvider } from '../components/ToastProvider';
 
 /**
  * The App component enables animated route transitions using Framer Motion.
@@ -13,17 +14,19 @@ import { useRouter } from 'next/router';
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        key={router.route}
-        initial={{ opacity: 0, y: 16 }} // Start slightly lower for a subtle effect
-        animate={{ opacity: 1, y: 0 }} // Fade in and slide up
-        exit={{ opacity: 0, y: -16 }}  // Fade out and slide up
-        transition={{ duration: 0.18, ease: 'easeInOut' }} // Faster, smoother
-      >
-        {/* Render the current page */}
-        <Component {...pageProps} />
-      </motion.div>
-    </AnimatePresence>
+    <ToastProvider>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={router.route}
+          initial={{ opacity: 0, y: 16 }} // Start slightly lower for a subtle effect
+          animate={{ opacity: 1, y: 0 }} // Fade in and slide up
+          exit={{ opacity: 0, y: -16 }}  // Fade out and slide up
+          transition={{ duration: 0.18, ease: 'easeInOut' }} // Faster, smoother
+        >
+          {/* Render the current page */}
+          <Component {...pageProps} />
+        </motion.div>
+      </AnimatePresence>
+    </ToastProvider>
   );
 }

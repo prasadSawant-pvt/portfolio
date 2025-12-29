@@ -4,6 +4,14 @@ export default function PacmanChaseBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Respect prefers-reduced-motion and small screens: disable heavy animation
+    const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isSmall = typeof window !== 'undefined' && window.innerWidth < 640;
+    if (prefersReduced || isSmall) {
+      // Don't mount canvas animations to save CPU and respect accessibility
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d')!;

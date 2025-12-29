@@ -37,6 +37,16 @@ export function Carousel({ items }: { items: React.ReactNode[] }) {
   const itemCount = items.length;
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
+  // keyboard navigation for carousel
+  React.useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') setCurrent(c => (c + 1) % itemCount);
+      if (e.key === 'ArrowLeft') setCurrent(c => (c - 1 + itemCount) % itemCount);
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [itemCount]);
+
   const goTo = (idx: number) => {
     setCurrent(idx);
     scrollRef.current?.scrollTo({
@@ -51,6 +61,9 @@ export function Carousel({ items }: { items: React.ReactNode[] }) {
         ref={scrollRef}
         className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
         style={{ scrollBehavior: "smooth" }}
+        role="region"
+        aria-label="Projects carousel"
+        tabIndex={0}
       >
         <AnimatePresence initial={false}>
           {items.map((item, idx) => (
@@ -58,6 +71,8 @@ export function Carousel({ items }: { items: React.ReactNode[] }) {
               key={idx}
               className={`snap-center shrink-0 w-full md:w-[32rem] transition-transform duration-300 ${current === idx ? "scale-100" : "scale-95 opacity-70"}`}
               style={{ minWidth: "80vw", maxWidth: 560 }}
+              aria-hidden={current !== idx}
+              tabIndex={-1}
             >
               {item}
             </div>
@@ -71,6 +86,7 @@ export function Carousel({ items }: { items: React.ReactNode[] }) {
             className={`w-3 h-3 rounded-full ${current === idx ? "bg-accent2" : "bg-gray-300 dark:bg-gray-700"}`}
             onClick={() => goTo(idx)}
             aria-label={`Go to card ${idx + 1}`}
+            aria-current={current === idx}
           />
         ))}
       </div>

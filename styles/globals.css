@@ -2,6 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Floating and decorative animations */
+@keyframes float-y {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+@keyframes blob {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.animate-float-slow { animation: float-y 6s ease-in-out infinite; }
+.animate-blob-slow { animation: blob 10s ease-in-out infinite; }
+.animate-blob-slower { animation: blob 14s ease-in-out infinite; }
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow, .animate-blob-slow, .animate-blob-slower, .animate-fade-in, .animate-fade-up { animation: none !important; }
+}
+
+/* Fade-in / up utility */
+@keyframes fade-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-up { animation: fade-up 0.45s ease-out both; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fade-in 0.3s ease-out both; }
+
+/* Glass / card */
+.glass-card {
+  background: rgba(255,255,255,0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.dark .glass-card {
+  background: rgba(17,24,39,0.55);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Profile ring */
+.profile-ring {
+  box-shadow: 0 8px 30px rgba(52,152,219,0.12); /* accent color soft glow */
+  border-radius: 9999px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.profile-ring:hover, .profile-ring:focus { transform: translateY(-6px) scale(1.02); box-shadow: 0 18px 40px rgba(52,152,219,0.18); }
+
+/* Social pill buttons */
+.pill-btn { transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
+.pill-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(52,152,219,0.18), 0 0 0 1px rgba(52,152,219,0.18); }
+.pill-btn:focus-visible { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(52,152,219,0.22), 0 0 0 3px rgba(52,152,219,0.28); }
+.dark .pill-btn:hover { box-shadow: 0 10px 24px rgba(96,165,250,0.16), 0 0 0 1px rgba(96,165,250,0.18); }
+.dark .pill-btn:focus-visible { box-shadow: 0 10px 24px rgba(96,165,250,0.20), 0 0 0 3px rgba(96,165,250,0.26); }
+.pill-btn:active { transform: translateY(1px) scale(0.995); }
+
+/* Toast handled via component but make sure placement has some padding */
+
 body {
   font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #fff;

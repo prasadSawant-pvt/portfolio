@@ -1,7 +1,13 @@
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { Card } from '../components/ui/apple-cards-carousel';
-import HeroDecorations from '../components/HeroDecorations';
+
+// Lazy load HeroDecorations to reduce initial bundle size
+const HeroDecorations = dynamic(() => import('../components/HeroDecorations'), {
+  loading: () => null,
+  ssr: false
+});
 
 const experiences = [
   {

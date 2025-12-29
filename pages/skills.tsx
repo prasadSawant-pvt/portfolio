@@ -1,8 +1,14 @@
 import Layout from '../components/Layout';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { Card } from '../components/ui/apple-cards-carousel';
 import { SkillBadge } from '../components/ui/skill-badge';
-import HeroDecorations from '../components/HeroDecorations';
+
+// Lazy load HeroDecorations to reduce initial bundle size
+const HeroDecorations = dynamic(() => import('../components/HeroDecorations'), {
+  loading: () => null,
+  ssr: false
+});
 
 // Demo skill level mapping - easily update ratings here
 const skillLevels: Record<string, number> = {

@@ -1,7 +1,13 @@
 import Layout from '../components/Layout';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import HeroDecorations from '../components/HeroDecorations';
+import dynamic from 'next/dynamic';
+
+// Lazy load HeroDecorations to reduce initial bundle size
+const HeroDecorations = dynamic(() => import('../components/HeroDecorations'), {
+  loading: () => null,
+  ssr: false
+});
 
 export default function Contact() {
   return (

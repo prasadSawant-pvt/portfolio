@@ -1,13 +1,19 @@
 // Home page: friendly landing section introducing Prasad Sawant
 // Layout and content are mobile-first and fully responsive
 import Layout from '../components/Layout';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa';
 import { useState } from 'react';
 import Image from 'next/image';
-import HeroDecorations from '../components/HeroDecorations';
 import { useToast } from '../components/ToastProvider';
+
+// Lazy load HeroDecorations to reduce initial bundle size
+const HeroDecorations = dynamic(() => import('../components/HeroDecorations'), {
+  loading: () => null,
+  ssr: false
+});
 
 function MailRevealButton({ onToast }: { onToast?: (msg: string, type?: 'info'|'success'|'error') => void }) {
   const [show, setShow] = useState(false);
@@ -151,7 +157,8 @@ export default function Home() {
               width={160}
               height={160}
               className="object-cover w-full h-full"
-              loading="lazy"
+              priority
+              sizes="(max-width: 640px) 160px, 160px"
             />
           </motion.div>
 

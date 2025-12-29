@@ -115,18 +115,17 @@ export default function Home() {
 
   const handleResumeClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const pdfUrl = encodeURIComponent(window.location.origin + '/Resume.pdf');
-    const viewerUrl = `https://docs.google.com/viewer?url=${pdfUrl}&embedded=true`;
+    const resumeUrl = '/Resume.pdf';
     showToast('Choose an option:', 'info', [
       {
         label: 'View',
-        onClick: () => window.open(viewerUrl, '_blank')
+        onClick: () => window.open(resumeUrl, '_blank')
       },
       {
         label: 'Download',
         onClick: () => {
           const link = document.createElement('a');
-          link.href = '/Resume.pdf';
+          link.href = resumeUrl;
           link.download = 'PrasadSawant_Resume.pdf';
           link.style.display = 'none';
           document.body.appendChild(link);

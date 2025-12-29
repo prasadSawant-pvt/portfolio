@@ -8,14 +8,17 @@ const experiences = [
     company: 'PayPal, Bengaluru',
     date: 'Jan 2025 – Present',
     description: [
-      'Design, develop, and optimize core systems that power millions of transactions daily.',
-      'Collaborate closely with experienced engineers to learn and grow skills.',
-      'Develop and maintain backend components, write clean and efficient code, and participate in code reviews.'
+     'Optimized core card-payment flows across Authorization, Switch, and Settlement layers, improving routing accuracy and reducing downgrades across major processors (Visa, Discover, Amex, FDMS, OMNIPAY).',
+'Delivered key interchange optimization programs (Visa SMB, Discover TPAN), improving qualification accuracy and generating over $1.5M annual savings through rule and processor-level enhancements.',
+'Led controlled traffic rollouts from pilot to full production (100%), ensuring zero performance issues through continuous telemetry and monitoring.',
+'Modernized observability by driving the OpenTelemetry migration and stabilizing telemetry pipelines, improving metrics, logs, and alerts across high-throughput payment services (Datadog, Kibana, Micrometer).',
+'Owned production incident response for declines, routing faults, auth-capture mismatches, and certificate/key rotations; performed deep RCA and delivered fixes to improve platform reliability.',
+
     ]
   },
   {
     title: 'Analyst',
-    company: 'TIAA, Bengaluru',
+    company: 'TIAA, Pune',
     date: 'July 2022 – Dec 2024',
     description: [
       'Developed robust and scalable APIs for the web-based platform ICON.',

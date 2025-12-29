@@ -38,7 +38,7 @@ function MobileNav({ onResumeClick }: { onResumeClick: (e: React.MouseEvent) => 
           ))}
           <button
             type="button"
-            className="block w-full px-2 py-1 mt-1 border border-accent text-accent dark:text-accent2 rounded-md font-semibold text-sm text-center hover:bg-accent/10 dark:hover:bg-accent2/10 transition-colors duration-150"
+            className="block w-full px-4 py-2 mt-1 border border-accent bg-white text-accent dark:bg-gray-900 dark:text-accent2 dark:border-accent2 rounded-full font-semibold text-sm text-center pill-btn focus:outline-none focus:ring-2 focus:ring-accent transition hover:bg-accent/10 dark:hover:bg-accent2/10"
             aria-label="Download Resume PDF"
             onClick={(e) => {
               setOpen(false);
@@ -149,7 +149,7 @@ export default function Navbar() {
           {/* Resume download button */}
           <button
             onClick={handleResumeClick}
-            className="hidden md:inline-block ml-2 px-4 py-1 bg-accent dark:bg-accent2 text-white dark:text-gray-900 font-semibold rounded-full shadow hover:bg-accent2 dark:hover:bg-accent transition-colors duration-150 text-sm border border-accent2"
+            className="hidden md:inline-flex items-center gap-2 ml-2 px-4 py-2 rounded-full font-semibold border border-accent bg-accent text-white pill-btn shadow-sm hover:bg-accent2 hover:border-accent2 focus:outline-none focus:ring-2 focus:ring-accent transition"
             aria-label="Download Resume PDF"
             type="button"
           >

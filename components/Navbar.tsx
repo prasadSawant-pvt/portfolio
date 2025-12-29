@@ -76,21 +76,28 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const { showToast } = useToast();
 
-  const handleResumeClick = async (e: React.MouseEvent) => {
+  const handleResumeClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    try {
-      const res = await fetch('/Resume.pdf', { method: 'HEAD' });
-      if (res.status === 200) {
-        showToast('Starting download...', 'info');
-        window.open('/Resume.pdf', '_blank');
-      } else if (res.status === 429) {
-        showToast('Download limit reached. Try again later.', 'error');
-      } else {
-        showToast('Unable to download resume right now.', 'error');
+    const pdfUrl = encodeURIComponent(window.location.origin + '/Resume.pdf');
+    const viewerUrl = `https://docs.google.com/viewer?url=${pdfUrl}&embedded=true`;
+    showToast('Choose an option:', 'info', [
+      {
+        label: 'View',
+        onClick: () => window.open(viewerUrl, '_blank')
+      },
+      {
+        label: 'Download',
+        onClick: () => {
+          const link = document.createElement('a');
+          link.href = '/Resume.pdf';
+          link.download = 'PrasadSawant_Resume.pdf';
+          link.style.display = 'none';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
       }
-    } catch (err) {
-      showToast('Download failed. Try again later.', 'error');
-    }
+    ]);
   };
 
   return (

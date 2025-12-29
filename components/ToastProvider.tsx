@@ -1,12 +1,14 @@
 import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from 'react';
 import Toast from './Toast';
 
-export type ToastType = 'info' | 'success' | 'error';
+type ToastType = 'info' | 'success' | 'error';
 
-type ToastState = { id: number; message: string; type: ToastType } | null;
+type ToastAction = { label: string; onClick: () => void };
+
+type ToastState = { id: number; message: string; type: ToastType; actions?: ToastAction[] } | null;
 
 interface ToastContextType {
-  showToast: (message: string, type?: ToastType) => void;
+  showToast: (message: string, type?: ToastType, actions?: ToastAction[]) => void;
   hideToast: () => void;
 }
 
@@ -24,9 +26,9 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
   const hideToast = useCallback(() => setToast(null), []);
 
-  const showToast = useCallback((message: string, type: ToastType = 'info') => {
+  const showToast = useCallback((message: string, type: ToastType = 'info', actions?: ToastAction[]) => {
     idRef.current += 1;
-    setToast({ id: idRef.current, message, type });
+    setToast({ id: idRef.current, message, type, actions });
   }, []);
 
   const value = useMemo(() => ({ showToast, hideToast }), [showToast, hideToast]);
@@ -39,6 +41,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           key={toast.id}
           message={toast.message}
           type={toast.type}
+          actions={toast.actions}
           onClose={hideToast}
         />
       )}

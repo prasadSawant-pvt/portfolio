@@ -1,6 +1,7 @@
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
 import { Card } from '../components/ui/apple-cards-carousel';
+import HeroDecorations from '../components/HeroDecorations';
 
 const experiences = [
   {
@@ -31,8 +32,9 @@ const experiences = [
 export default function Experience() {
   return (
     <Layout title="Experience">
+      <HeroDecorations />
       <motion.section
-        className="max-w-3xl mx-auto py-12"
+        className="relative max-w-3xl mx-auto py-12"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}

@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
+import HeroDecorations from '../components/HeroDecorations';
 
 const projects = [
   {
@@ -103,8 +104,9 @@ export default function Portfolio() {
 
   return (
     <Layout title="Portfolio">
+      <HeroDecorations />
       <motion.section
-        className="max-w-4xl mx-auto py-12"
+        className="relative max-w-4xl mx-auto py-12"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}

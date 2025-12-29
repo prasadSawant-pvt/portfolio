@@ -2,8 +2,9 @@ import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
 import { Card } from '../components/ui/apple-cards-carousel';
 import { SkillBadge } from '../components/ui/skill-badge';
+import HeroDecorations from '../components/HeroDecorations';
 
-// Demo skill level mapping
+// Demo skill level mapping - easily update ratings here
 const skillLevels: Record<string, number> = {
   'Java': 4.5,
   'Spring Boot': 4.5,
@@ -14,6 +15,9 @@ const skillLevels: Record<string, number> = {
   'SonarQube': 4.5,
   'Apache Kafka': 4,
 };
+
+// Global flag to show/hide skill ratings on hover
+const SHOW_SKILL_RATINGS = false;
 
 function getSkillLevel(skill: string): number {
   if (skillLevels.hasOwnProperty(skill)) return skillLevels[skill];
@@ -43,8 +47,9 @@ export default function Skills() {
 
   return (
     <Layout title="Skills">
+      <HeroDecorations />
       <motion.section
-        className="max-w-4xl mx-auto py-12"
+        className="relative max-w-4xl mx-auto py-12"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
@@ -61,7 +66,7 @@ export default function Skills() {
                   <ul className="flex flex-wrap gap-3 md:gap-2 mt-2">
                     {skill.items.map(item => (
                       <li key={item}>
-                        <SkillBadge skill={item} level={getSkillLevel(item)} />
+                        <SkillBadge skill={item} level={getSkillLevel(item)} showRating={SHOW_SKILL_RATINGS} />
                       </li>
                     ))}
                   </ul>

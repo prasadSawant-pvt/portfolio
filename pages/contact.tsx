@@ -1,13 +1,15 @@
 import Layout from '../components/Layout';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import HeroDecorations from '../components/HeroDecorations';
 
 export default function Contact() {
   return (
     <Layout title="Contact">
+      <HeroDecorations />
       <motion.section
         id="contact"
-        className="bg-white dark:bg-gray-900 min-h-screen py-16 px-4 text-center text-accent dark:text-accent2 flex flex-col items-center justify-center transition-colors duration-300"
+        className="relative bg-white dark:bg-gray-900 min-h-screen py-16 px-4 text-center text-accent dark:text-accent2 flex flex-col items-center justify-center transition-colors duration-300"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}

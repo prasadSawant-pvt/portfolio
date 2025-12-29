@@ -79,7 +79,7 @@ export default function Navbar() {
   const handleResumeClick = (e: React.MouseEvent) => {
     e.preventDefault();
     // Google Drive share link
-    const googleDriveUrl = 'https://drive.google.com/file/d/1riiUEOK9Rq-8n5OG8P3QFYZAiIX861P8/view?usp=sharing';
+    const googleDriveUrl = 'https://drive.google.com/file/d/1riiUEOK9Rq-8n5OG8P3QFYZAiIX861P8/view?usp=drive_link';
     const directDownloadUrl = 'https://drive.google.com/uc?export=download&id=1riiUEOK9Rq-8n5OG8P3QFYZAiIX861P8';
     
     showToast('Choose an option:', 'info', [

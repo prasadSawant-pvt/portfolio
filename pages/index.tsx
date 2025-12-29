@@ -115,11 +115,17 @@ export default function Home() {
 
   const handleResumeClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const resumeUrl = '/Resume.pdf';
+    const resumeUrl = typeof window !== 'undefined' ? `${window.location.origin}/Resume.pdf` : '/Resume.pdf';
     showToast('Choose an option:', 'info', [
       {
         label: 'View',
-        onClick: () => window.open(resumeUrl, '_blank')
+        onClick: () => {
+          const link = document.createElement('a');
+          link.href = resumeUrl;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.click();
+        }
       },
       {
         label: 'Download',

@@ -78,23 +78,20 @@ export default function Navbar() {
 
   const handleResumeClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const resumeUrl = typeof window !== 'undefined' ? `${window.location.origin}/Resume.pdf` : '/Resume.pdf';
+    // Google Drive share link
+    const googleDriveUrl = 'https://drive.google.com/file/d/1riiUEOK9Rq-8n5OG8P3QFYZAiIX861P8/view?usp=sharing';
+    const directDownloadUrl = 'https://drive.google.com/uc?export=download&id=1riiUEOK9Rq-8n5OG8P3QFYZAiIX861P8';
+    
     showToast('Choose an option:', 'info', [
       {
         label: 'View',
-        onClick: () => {
-          const link = document.createElement('a');
-          link.href = resumeUrl;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.click();
-        }
+        onClick: () => window.open(googleDriveUrl, '_blank')
       },
       {
         label: 'Download',
         onClick: () => {
           const link = document.createElement('a');
-          link.href = resumeUrl;
+          link.href = directDownloadUrl;
           link.download = 'PrasadSawant_Resume.pdf';
           link.style.display = 'none';
           document.body.appendChild(link);

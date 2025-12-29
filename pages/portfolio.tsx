@@ -1,5 +1,12 @@
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+// Lazy load HeroDecorations to reduce initial bundle size
+const HeroDecorations = dynamic(() => import('../components/HeroDecorations'), {
+  loading: () => null,
+  ssr: false
+});
 
 const projects = [
   {
@@ -40,8 +47,8 @@ const projects = [
       'Managed complex workflows for investment lineup changes, ensuring efficient and accurate processing.'
     ],
     tech: ['Java', 'MongoDB', 'REST-API', 'Microservice Architecture', 'Spring Boot', 'Apache Kafka', 'Docker', 'Junit', 'Design Pattern'],
-    tag: 'Professional Experience',
-    link: 'https://github.com/prasadSawant-pvt/Fund-Lineup-Change-Service'
+    tag: 'Professional Experience - Client TIAA',
+    // link: 'https://github.com/prasadSawant-pvt/Fund-Lineup-Change-Service'
   },
   {
     title: 'Interview Management System',
@@ -53,7 +60,7 @@ const projects = [
       'Built with Java and Spring Boot.'
     ],
     tech: ['Java', 'Spring Boot'],
-    tag: 'Professional Experience'
+    tag: 'Professional Experience - Client TIAA'
   },
   {
     title: 'Plant Disease Detection using Deep Learning',
@@ -65,7 +72,7 @@ const projects = [
     ],
     tech: ['Python', 'TensorFlow', 'Flask', 'OpenCV'],
     tag: 'Personal Project',
-    link: 'https://github.com/prasadSawant-pvt/Plant-Disease-Detection'
+    // link: 'https://github.com/prasadSawant-pvt/Plant-Disease-Detection'
   },
   {
     title: 'Bus Pass Booking Portal',
@@ -77,7 +84,7 @@ const projects = [
     ],
     tech: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
     tag: 'Personal Project',
-    link: 'https://github.com/prasadSawant-pvt/Bus-Pass-Booking-Portal'
+    // link: 'https://github.com/prasadSawant-pvt/Bus-Pass-Booking-Portal'
   },
   {
     title: 'Hostel Admission and Management System',
@@ -89,7 +96,7 @@ const projects = [
     ],
     tech: ['Java', 'Spring Boot', 'MySQL', 'HTML/CSS'],
     tag: 'Personal Project',
-    link: 'https://github.com/prasadSawant-pvt/Hostel-Admission-and-Management-System'
+    // link: 'https://github.com/prasadSawant-pvt/Hostel-Admission-and-Management-System'
   }
 ];
 
@@ -103,8 +110,9 @@ export default function Portfolio() {
 
   return (
     <Layout title="Portfolio">
+      <HeroDecorations />
       <motion.section
-        className="max-w-4xl mx-auto py-12"
+        className="relative max-w-4xl mx-auto py-12"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
@@ -114,8 +122,9 @@ export default function Portfolio() {
           {(['All', 'Personal', 'Professional'] as const).map((type) => (
             <button
               key={type}
-              className={`px-4 py-2 rounded-full border font-semibold transition-colors duration-150 ${filter === type ? 'bg-accent text-white border-accent' : 'bg-white text-accent border-accent hover:bg-accent hover:text-white'}`}
+              className={`px-4 py-2 rounded-full border font-semibold pill-btn focus:outline-none focus:ring-2 focus:ring-accent transition ${filter === type ? 'bg-accent text-white border-accent' : 'bg-white text-accent border-accent hover:bg-accent hover:text-white dark:bg-gray-900 dark:text-accent2 dark:border-accent2 dark:hover:bg-accent2 dark:hover:text-gray-900'}`}
               onClick={() => setFilter(type)}
+              type="button"
             >
               {type}
             </button>
@@ -123,9 +132,20 @@ export default function Portfolio() {
         </div>
         <div className="flex flex-col gap-6 w-full h-full py-6 sm:py-10">
           {projects
-            .filter(project =>
-              filter === 'All' ? true : filter === 'Personal' ? project.tag === 'Personal Project' : project.tag === 'Professional Experience'
-            )
+            .filter((project) => {
+              if (filter === 'All') return true;
+
+              if (filter === 'Personal') {
+                return project.tag.toLowerCase().includes('personal');
+              }
+
+              if (filter === 'Professional') {
+                return project.tag.toLowerCase().startsWith('professional');
+              }
+
+              return false;
+            })
+
             .map((project, idx) => (
               <Card
                 key={project.title}

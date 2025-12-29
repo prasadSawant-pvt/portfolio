@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeContext';
 import { useState } from 'react';
+import { useToast } from './ToastProvider';
 
-function MobileNav() {
+function MobileNav({ onResumeClick }: { onResumeClick: (e: React.MouseEvent) => void }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   return (
@@ -35,17 +36,17 @@ function MobileNav() {
               </span>
             </Link>
           ))}
-          <a
-            href="/Resume.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full px-2 py-1 mt-1 border border-accent text-accent dark:text-accent2 rounded-md font-semibold text-sm text-center hover:bg-accent/10 dark:hover:bg-accent2/10 transition-colors duration-150"
+          <button
+            type="button"
+            className="block w-full px-4 py-2 mt-1 border border-accent bg-white text-accent dark:bg-gray-900 dark:text-accent2 dark:border-accent2 rounded-full font-semibold text-sm text-center pill-btn focus:outline-none focus:ring-2 focus:ring-accent transition hover:bg-accent/10 dark:hover:bg-accent2/10"
             aria-label="Download Resume PDF"
-            onClick={() => setOpen(false)}
+            onClick={(e) => {
+              setOpen(false);
+              onResumeClick(e);
+            }}
           >
             Resume
-          </a>
+          </button>
         </div>
       )}
     </div>
@@ -73,6 +74,34 @@ const navLinks = [
 export default function Navbar() {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
+  const { showToast } = useToast();
+
+  const handleResumeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Google Drive share link
+    const googleDriveUrl = 'https://drive.google.com/file/d/1riiUEOK9Rq-8n5OG8P3QFYZAiIX861P8/view?usp=sharing';
+    const directDownloadUrl = 'https://drive.google.com/uc?export=download&id=1riiUEOK9Rq-8n5OG8P3QFYZAiIX861P8';
+    
+    showToast('Choose an option:', 'info', [
+      {
+        label: 'View',
+        onClick: () => window.open(googleDriveUrl, '_blank')
+      },
+      {
+        label: 'Download',
+        onClick: () => {
+          const link = document.createElement('a');
+          link.href = directDownloadUrl;
+          link.download = 'PrasadSawant_Resume.pdf';
+          link.style.display = 'none';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      }
+    ]);
+  };
+
   return (
     <motion.nav
       className="bg-gray-950 bg-opacity-80 sticky top-0 z-50 shadow"
@@ -82,7 +111,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto flex flex-row items-center justify-between px-4 py-3 gap-2 md:gap-4">
         {/* Hamburger menu for mobile */}
-        <MobileNav />
+        <MobileNav onResumeClick={handleResumeClick} />
         {/* Left section: Theme toggle and Brand */}
         <div className="flex flex-row items-center gap-2 md:gap-4 flex-shrink-0">
           <button
@@ -127,16 +156,14 @@ export default function Navbar() {
             ))}
           </ul>
           {/* Resume download button */}
-          <a
-            href="/Resume.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-block ml-2 px-4 py-1 bg-accent dark:bg-accent2 text-white dark:text-gray-900 font-semibold rounded-full shadow hover:bg-accent2 dark:hover:bg-accent transition-colors duration-150 text-sm border border-accent2"
+          <button
+            onClick={handleResumeClick}
+            className="hidden md:inline-flex items-center gap-2 ml-2 px-4 py-2 rounded-full font-semibold border border-accent bg-accent text-white pill-btn shadow-sm hover:bg-accent2 hover:border-accent2 focus:outline-none focus:ring-2 focus:ring-accent transition"
             aria-label="Download Resume PDF"
+            type="button"
           >
             Resume
-          </a>
+          </button>
         </div>
       </div>
     </motion.nav>

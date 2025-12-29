@@ -1,11 +1,19 @@
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+// Lazy load HeroDecorations to reduce initial bundle size
+const HeroDecorations = dynamic(() => import('../components/HeroDecorations'), {
+  loading: () => null,
+  ssr: false
+});
 
 export default function About() {
   return (
     <Layout title="About">
+      <HeroDecorations />
       <motion.section
-        className="bg-white dark:bg-gray-900 min-h-screen py-16 px-4 text-center flex flex-col items-center justify-center transition-colors duration-300"
+        className="relative bg-white dark:bg-gray-900 min-h-screen py-16 px-4 text-center flex flex-col items-center justify-center transition-colors duration-300"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}

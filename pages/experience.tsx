@@ -1,6 +1,13 @@
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { Card } from '../components/ui/apple-cards-carousel';
+
+// Lazy load HeroDecorations to reduce initial bundle size
+const HeroDecorations = dynamic(() => import('../components/HeroDecorations'), {
+  loading: () => null,
+  ssr: false
+});
 
 const experiences = [
   {
@@ -8,14 +15,17 @@ const experiences = [
     company: 'PayPal, Bengaluru',
     date: 'Jan 2025 – Present',
     description: [
-      'Design, develop, and optimize core systems that power millions of transactions daily.',
-      'Collaborate closely with experienced engineers to learn and grow skills.',
-      'Develop and maintain backend components, write clean and efficient code, and participate in code reviews.'
+     'Optimized core card-payment flows across Authorization, Switch, and Settlement layers, improving routing accuracy and reducing downgrades across major processors (Visa, Discover, Amex, FDMS, OMNIPAY).',
+'Delivered key interchange optimization programs (Visa SMB, Discover TPAN), improving qualification accuracy and generating over $1.5M annual savings through rule and processor-level enhancements.',
+'Led controlled traffic rollouts from pilot to full production (100%), ensuring zero performance issues through continuous telemetry and monitoring.',
+'Modernized observability by driving the OpenTelemetry migration and stabilizing telemetry pipelines, improving metrics, logs, and alerts across high-throughput payment services (Datadog, Kibana, Micrometer).',
+'Owned production incident response for declines, routing faults, auth-capture mismatches, and certificate/key rotations; performed deep RCA and delivered fixes to improve platform reliability.',
+
     ]
   },
   {
     title: 'Analyst',
-    company: 'TIAA, Bengaluru',
+    company: 'TIAA, Pune',
     date: 'July 2022 – Dec 2024',
     description: [
       'Developed robust and scalable APIs for the web-based platform ICON.',
@@ -28,8 +38,9 @@ const experiences = [
 export default function Experience() {
   return (
     <Layout title="Experience">
+      <HeroDecorations />
       <motion.section
-        className="max-w-3xl mx-auto py-12"
+        className="relative max-w-3xl mx-auto py-12"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
